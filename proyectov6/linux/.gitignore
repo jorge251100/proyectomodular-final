@@ -1,0 +1,6 @@
+flutter/ephemeral
+# Ignorar la carpeta android/app
+/android/app/
+
+# Ignorar el archivo lib/pages/consts.dart
+lib/consts.dart
