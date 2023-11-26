@@ -13,35 +13,9 @@ class SensorsPage extends StatefulWidget {
 }
 
 class _MyAppState extends State<SensorsPage> {
-  String accelerometerValues = 'Unknown';
-  String gyroscopeValues = 'Unknown';
-  String magnetometerValues = 'Unknown';
-
   @override
   void initState() {
     super.initState();
-    // Inicia la escucha de los sensores al cargar la aplicación
-    startListening();
-  }
-
-  void startListening() {
-    accelerometerEvents.listen((AccelerometerEvent event) {
-      setState(() {
-        accelerometerValues = 'X: ${event.x.toStringAsFixed(2)}, Y: ${event.y.toStringAsFixed(2)}, Z: ${event.z.toStringAsFixed(2)}';
-      });
-    });
-
-    gyroscopeEvents.listen((GyroscopeEvent event) {
-      setState(() {
-        gyroscopeValues = 'X: ${event.x.toStringAsFixed(2)}, Y: ${event.y.toStringAsFixed(2)}, Z: ${event.z.toStringAsFixed(2)}';
-      });
-    });
-
-    magnetometerEvents.listen((MagnetometerEvent event) {
-      setState(() {
-        magnetometerValues = 'X: ${event.x.toStringAsFixed(2)}, Y: ${event.y.toStringAsFixed(2)}, Z: ${event.z.toStringAsFixed(2)}';
-      });
-    });
   }
 
   @override
@@ -59,18 +33,7 @@ class _MyAppState extends State<SensorsPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SensorCard(
-                title: 'Accelerometer',
-                value: accelerometerValues,
-              ),
-              SensorCard(
-                title: 'Gyroscope',
-                value: gyroscopeValues,
-              ),
-              SensorCard(
-                title: 'Magnetometer',
-                value: magnetometerValues,
-              ),
+              // Los widgets de los sensores se han eliminado para simplificar
             ],
           ),
         ),
@@ -99,36 +62,6 @@ class _MyAppState extends State<SensorsPage> {
           MaterialPageRoute(builder: (context) => TodoList()),
         );
       },
-    );
-  }
-}
-
-class SensorCard extends StatelessWidget {
-  final String title;
-  final String value;
-
-  SensorCard({required this.title, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              value,
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
